@@ -3,6 +3,7 @@ var express = require('express'),
     knex = require('../db/knex');
 
 router.route('/')
+  // GET '/'
   .get((req, res) => {
     knex('pirates').select()
       .then(function(pirates) {
@@ -12,6 +13,7 @@ router.route('/')
         res.send(err);
       })
   })
+  // POST '/'
   .post((req, res) => {
     knex('pirates').insert(req.body.pirate)
       .returning('*')
@@ -22,11 +24,36 @@ router.route('/')
       .catch(function(err) {
         res.send(err);
       })
+  });
+
+router.route('/:id')
+// GET '/:id'
+  .get((req, res) => {
+    knex('pirates').select()
+      .where('id', +req.params.id)
+      .then(function(pirate) {
+        console.log("SUCCESSFUL GET: ", pirate)
+        res.send(pirate);
+      })
+      .catch(function(err) {
+        res.send(err);
+      })
+  })
+// PUT '/:id'
+  .put((req, res) => {
+    knex('pirates').where('id', +req.params.id)
+      .update({name: req.body.pirate.name, poison: req.body.pirate.poison, accessory: req.body.pirate.accessory, image_url: req.body.pirate.image_url}) 
+      .returning('*')
+      .then(function(updatedPirate) {
+        console.log("SUCCESSFUL PUT: ", updatedPirate)
+        res.send(updatedPirate);
+      })
+      .catch(function(err) {
+        res.send(err);
+      })
   })
 
-// GET '/:id'
-// PUT '/:id'
-// POST '/'
+
 // DELETE '/:id'
 
 module.exports = router;
