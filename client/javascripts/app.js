@@ -1,12 +1,14 @@
 (function() {
   angular
-    .module('pirateApp', ['ngRoute'])
+    .module('piratesApp', ['ngRoute'])
     .config(config);
 
   function config($routeProvider, $locationProvider) {
     $routeProvider
       .when('/pirates', {
-        templateUrl: '../views/pirates/index.html'
+        templateUrl: '../views/pirates/index.html',
+        controller: "PiratesController",
+        controllerAs: 'vm'
       })
       .when('/pirates/new', {
         templateUrl: '../views/pirates/new.html'
