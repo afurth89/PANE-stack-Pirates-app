@@ -55,10 +55,9 @@ router.route('/:id')
 // DELETE '/:id'
   .delete((req, res) => {
     knex('pirates').delete().where('id', +req.params.id)
-      .returning('*')
-      .then(function(deletedPirate) {
-        console.log("SUCCESSFUL DELETE: ", deletedPirate);
-        res.send(deletedPirate)
+      .then(function() {
+        console.log("SUCCESSFUL DELETE");
+        res.redirect('/')
       })
       .catch(function(err) {
         res.send(err)
