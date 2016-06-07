@@ -3,7 +3,7 @@ var express = require('express'),
     knex = require('../db/knex');
 
 router.route('/')
-  // GET '/'
+// GET '/'
   .get((req, res) => {
     knex('pirates').select()
       .then(function(pirates) {
@@ -13,7 +13,7 @@ router.route('/')
         res.send(err);
       })
   })
-  // POST '/'
+// POST '/'
   .post((req, res) => {
     knex('pirates').insert(req.body.pirate)
       .returning('*')
