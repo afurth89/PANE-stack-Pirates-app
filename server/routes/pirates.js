@@ -52,8 +52,19 @@ router.route('/:id')
         res.send(err);
       })
   })
-
-
 // DELETE '/:id'
+  .delete((req, res) => {
+    knex('pirates').delete().where('id', +req.params.id)
+      .returning('*')
+      .then(function(deletedPirate) {
+        console.log("SUCCESSFUL DELETE: ", deletedPirate);
+        res.send(deletedPirate)
+      })
+      .catch(function(err) {
+        res.send(err)
+      })
+  })
+
+
 
 module.exports = router;
