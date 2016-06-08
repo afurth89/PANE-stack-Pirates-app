@@ -1,1 +1,17 @@
-<h1>Show this pirate</h1>
+<div class="panel panel-default">
+  <div class="panel panel-heading">
+    <h2>Pirate #{{pirate.id}}</h2>
+  </div>
+  <div class="panel panel-body">
+    <div class="row">
+      <div class="col-sm-4">
+        <img ng-src="{{pirate.image_url}}" alt="">
+      </div>
+      <div class="col-sm-8">
+        <h2>{{pirate.name}}</h2>
+        <h5>Poison: {{pirate.poison}}</h5>
+        <h5>Accessory: {{pirate.accessory}}</h5>
+        <a class="btn btn-warning" ng-href="/pirates/{{pirate.id}}/edit" role="button">Edit this Pirate</a>
+    </div>
+  </div>
+</div>

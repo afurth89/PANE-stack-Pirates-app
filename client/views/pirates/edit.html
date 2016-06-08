@@ -1,1 +1,22 @@
-<h1>Edit this pirate</h1>
+<div id="editPirateForm">
+  <form ng-submit="vm.editPirate(vm.pirate)">
+    <div class="form-group">
+      <label>Pirate Name</label>
+      <input ng-model="vm.pirate.name" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Pirate Poison</label>
+      <input ng-model="vm.pirate.poison" type="text" class="form-control" >
+    </div>
+    <div class="form-group">
+      <label>Pirate Accessory</label>
+      <input ng-model="vm.pirate.accessory" type="text" class="form-control" >
+    </div>
+    <div class="form-group">
+      <label>Pirate Image</label>
+      <input ng-model="vm.pirate.image_url" type="text" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a class="btn btn-warning" href="/pirates">Never mind, go back</a>
+  </form>
+</div>

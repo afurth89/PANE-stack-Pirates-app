@@ -41,7 +41,7 @@ router.route('/:id')
   })
 // PUT '/:id'
   .put((req, res) => {
-    knex('pirates').where('id', +req.params.id)
+    knex('pirates').where('id', +req.body.pirate.id)
       .update({name: req.body.pirate.name, poison: req.body.pirate.poison, accessory: req.body.pirate.accessory, image_url: req.body.pirate.image_url}) 
       .returning('*')
       .then(function(updatedPirate) {

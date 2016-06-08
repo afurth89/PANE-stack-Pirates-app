@@ -11,13 +11,19 @@
         controllerAs: 'vm'
       })
       .when('/pirates/new', {
-        templateUrl: '../views/pirates/new.html'
+        templateUrl: '../views/pirates/new.html',
+        controller: "NewPirateController",
+        controllerAs: 'vm'
       })
       .when('/pirates/:id', {
-        templateUrl: '../views/pirates/show.html'
+        templateUrl: '../views/pirates/show.html',
+        controller: "PirateController",
+        controllerAs: 'pirate'
       })
       .when('/pirates/:id/edit', {
-        templateUrl: '../views/pirates/edit.html'
+        templateUrl: '../views/pirates/edit.html',
+        controller: "EditPirateController",
+        controllerAs: 'vm'
       })
       .otherwise({redirectTo: '/pirates'})
     $locationProvider.html5Mode(true);

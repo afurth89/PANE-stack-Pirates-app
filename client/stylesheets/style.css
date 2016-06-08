@@ -1,0 +1,9 @@
+#newPirateForm, #editPirateForm {
+  width: 300px;
+  margin-left: 50px;
+}
+
+#newPirateBtn {
+  margin-right: 30px;
+  margin-top: 15px;
+}
