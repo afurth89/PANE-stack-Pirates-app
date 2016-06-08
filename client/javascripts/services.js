@@ -24,12 +24,11 @@
 
       // For Edit Page
       this.deletePirate = function(id) {
-        return $http.delete(BASE_URL+id, id)
+        return $http.delete(BASE_URL+id)
       }
 
       // For Edit Page
       this.updatePirate = function(pirate) {
-        debugger
         return $http.put(BASE_URL+pirate.id, pirate)
       }
     }
