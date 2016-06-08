@@ -2,13 +2,18 @@
   angular
     .module('piratesApp', ['ngRoute'])
     .config(config);
+  
+  config.$inject = ['$routeProvider', '$locationProvider']
 
   function config($routeProvider, $locationProvider) {
     $routeProvider
       .when('/pirates', {
         templateUrl: '../views/pirates/index.html',
         controller: "PiratesController",
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          pirates: getAllPirates
+        }
       })
       .when('/pirates/new', {
         templateUrl: '../views/pirates/new.html',
@@ -23,12 +28,25 @@
       .when('/pirates/:id/edit', {
         templateUrl: '../views/pirates/edit.html',
         controller: "EditPirateController",
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          pirate: getPirateById
+        }
       })
       .otherwise({redirectTo: '/pirates'})
     $locationProvider.html5Mode(true);
   }
 
-  config.$inject = ['$routeProvider', '$locationProvider']
+  getAllPirates.$inject = ['PirateService']
+
+  function getAllPirates(PirateService) {
+    return PirateService.getPirates();
+  }
+
+  getPirateById.$inject = ['PirateService', '$route']
+
+  function getPirateById(PirateService, $route) {
+    return PirateService.getPirate($route.current.params.id)
+  }
 
 })()

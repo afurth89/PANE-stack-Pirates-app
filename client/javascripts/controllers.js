@@ -6,15 +6,12 @@
     .controller('NewPirateController', NewPirateController)
     .controller('EditPirateController', EditPirateController)
 
-    PiratesController.$inject = ['PirateService', '$location'];
+    PiratesController.$inject = ['pirates'];
 
-    function PiratesController(PirateService, $location) {
+    function PiratesController(pirates) {
 
       var vm = this;
-
-      PirateService.getPirates().then(function(res) {
-        vm.pirates = res.data
-      })
+      vm.pirates = pirates.data // 'pirates' comes from 'config' resolve object
 
     }
 
@@ -34,18 +31,13 @@
       }
     }
 
-    EditPirateController.$inject = ['PirateService', '$location', '$routeParams']
+    EditPirateController.$inject = ['PirateService', '$location', 'pirate']
 
-    function EditPirateController(PirateService, $location, $routeParams) {
+    function EditPirateController(PirateService, $location, pirate) {
 
       var vm = this;
 
-      var id = $routeParams.id;
-
-      PirateService.getPirate(id).then(function(res) {
-        console.log(res)
-        vm.pirate = res.data[0];
-      })
+      vm.pirate = pirate.data
 
       vm.editPirate = function(editedPirate) {
         var req = { pirate: editedPirate}

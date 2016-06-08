@@ -31,6 +31,7 @@ router.route('/:id')
   .get((req, res) => {
     knex('pirates').select()
       .where('id', +req.params.id)
+      .first()
       .then(function(pirate) {
         console.log("SUCCESSFUL GET: ", pirate)
         res.send(pirate);
