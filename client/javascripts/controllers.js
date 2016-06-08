@@ -51,8 +51,13 @@
         var req = { pirate: editedPirate}
         req.pirate.id = id;
         PirateService.updatePirate(req).then(function(res) {
-          console.log(res)
-          // $location.path('/pirates')
+          $location.path('/pirates')
+        })
+      }
+
+      vm.deletePirate = function() {
+        PirateService.deletePirate(id).then(function(res) {
+          $location.path('/pirates')
         })
       }
 

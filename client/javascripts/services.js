@@ -24,7 +24,7 @@
 
       // For Edit Page
       this.deletePirate = function(id) {
-        
+        return $http.delete(BASE_URL+id, id)
       }
 
       // For Edit Page
